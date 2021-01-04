@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from django.contrib.auth.decorators import login_required, permission_required
 from .models import Game, Comment
-from .forms import GameForm, CommentForm
+from .forms import GameForm, CommentForm, RegisterForm
 
 
 def index(req):
@@ -64,3 +64,16 @@ def new(req):
     else:
         form = GameForm()
         return render(req, 'new.html', {'form': form})
+
+def register(req):
+    if req.user.is_authenticated:
+        return render(req, 'index.html', {'page_title': 'Game Catalog'})
+    if req.method == "POST":
+        form = RegisterForm(req.POST or None)
+
+        if form.is_valid():
+            user = form.save()
+            return render(req, 'index.html', {'page_title': 'Game Catalog'})
+    else:
+        form = RegisterForm()
+    return render(req, '../templates/registration/register.html', { 'form': form })

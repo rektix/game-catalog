@@ -1,4 +1,4 @@
-{% extends 'master.html' %} {% block title %} Edit article {% endblock %} {% block content %}
+{% extends 'master.html' %} {% block title %} Edit game {% endblock %} {% block content %}
 
 <form method="post" action="{% url 'game_catalog_app:edit' id %}">
     {% csrf_token %}
@@ -16,11 +16,37 @@
     </div>
 
     <div class="form-group">
-        <label for="{{ form.content.id_for_label }}">{{ form.content.label_tag }}</label>
-        <textarea class="form-control" id="{{ form.content.id_for_label }}" name="{{ form.content.name }}" rows="5">{{ form.content.value }}</textarea> {% if form.content.errors %}
+        <label for="{{ form.description.id_for_label }}">{{ form.description.label_tag }}</label>
+        <textarea class="form-control" id="{{ form.description.id_for_label }}" name="{{ form.description.name }}" rows="5">{{ form.description.value }}</textarea> {% if form.description.errors %}
         <div class="alert alert-danger">
             <ul style="text-align: left">
-                {% for error in form.content.errors %}
+                {% for error in form.description.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.price.id_for_label }}">{{ form.price.label_tag }}</label>
+        <input type="number" class="form-control" id="{{ form.price.id_for_label }}" name="{{ form.price.name }}" value="{{ form.price.value }}"></input> {% if form.price.errors %}
+        <div class="alert alert-danger">
+            <ul style="text-align: left">
+                {% for error in form.price.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.rating.id_for_label }}">{{ form.rating.label_tag }}</label>
+        <input type="number" class="form-control" id="{{ form.rating.id_for_label }}" name="{{ form.rating.name }}" value="{{ form.rating.value }}"></input> {% if form.rating.errors %}
+        <div class="alert alert-danger">
+            <ul style="text-align: left">
+                {% for error in form.rating.errors %}
                 <li>{{ error }}</li>
                 {% endfor %}
             </ul>

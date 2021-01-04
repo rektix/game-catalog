@@ -1,6 +1,5 @@
-{%  extends 'master.html' %}
-
-{%  block content %}
-    <p>You are not logged in.</p>
-    <a href="{% url 'login'%}">Click here to login.</a>
-{% endblock %}
+{% extends 'master.html' %} {% block content %}
+<p>You are not logged in.</p>
+<a href="{% url 'login'%}">Click here to login.</a>
+<br>
+<a href="{% url 'game_catalog_app:register'%}">Click here to register.</a> {% endblock %}

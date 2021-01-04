@@ -1,4 +1,4 @@
-{% extends 'master.html' %} {% block title %} New article {% endblock %} {% block content %}
+{% extends 'master.html' %} {% block title %} New game {% endblock %} {% block content %}
 
 <form method="post" action="{% url 'game_catalog_app:new' %}">
     {% csrf_token %}
@@ -30,7 +30,7 @@
 
     <div class="form-group">
         <label for="{{ form.price.id_for_label }}">{{ form.price.label_tag }}</label>
-        <input type="number" class="form-control" id="{{ form.price.id_for_label }}" name="{{ form.price.name }}" rows="5"></input> {% if form.price.errors %}
+        <input type="number" class="form-control" id="{{ form.price.id_for_label }}" name="{{ form.price.name }}"></input> {% if form.price.errors %}
         <div class="alert alert-danger">
             <ul style="text-align: left">
                 {% for error in form.price.errors %}
@@ -43,7 +43,7 @@
 
     <div class="form-group">
         <label for="{{ form.rating.id_for_label }}">{{ form.rating.label_tag }}</label>
-        <input type="number" class="form-control" id="{{ form.rating.id_for_label }}" name="{{ form.rating.name }}" rows="5"></input> {% if form.rating.errors %}
+        <input type="number" class="form-control" id="{{ form.rating.id_for_label }}" name="{{ form.rating.name }}"></input> {% if form.rating.errors %}
         <div class="alert alert-danger">
             <ul style="text-align: left">
                 {% for error in form.rating.errors %}

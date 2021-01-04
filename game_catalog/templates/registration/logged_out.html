@@ -1,11 +1,5 @@
-{%  extends 'master.html' %}
-
-{% block title %}
-    Good by!
-{% endblock %}
-
-{%  block content %}
-    <p>Logged out!</p>
-    <a href="{% url 'login'%}">Click here to login again.</a>
-{%  endblock %}
-
+{% extends 'master.html' %} {% block title %} Good by! {% endblock %} {% block content %}
+<p>Logged out!</p>
+<a href="{% url 'login'%}">Click here to login again.</a>
+<br>
+<a href="{% url 'game_catalog_app:register'%}">Click here to register.</a> {% endblock %}

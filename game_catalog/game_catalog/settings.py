@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'game_catalog_app.apps.GameCatalogAppConfig',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +125,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = '/games'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
