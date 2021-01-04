@@ -22,7 +22,7 @@ def comment(req, id):
             a = Comment(content=form.cleaned_data['content'], author=req.user, game=game)
             a.save()
 
-    return redirect('game_catalog_app:games')
+    return redirect('game_catalog_app:game', id)
 
 @login_required
 def games(req):
