@@ -1,15 +1,15 @@
 {% load static %}
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{% url 'game_catalog_app:articles' %}">
+    <a class="navbar-brand" href="{% url 'game_catalog_app:games' %}">
         <img src="{% static 'img/rocket.png' %}" width="30" height="30" class="d-inline-block align-top" alt="logo" /> Vezbe 13
     </a>
 
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            {% if not perms.game_catalog_app.add_article %}
-            <a class="nav-link disabled" href="{% url 'game_catalog_app:new' %}">New article</a> {% else %}
-            <a class="nav-link" href="{% url 'game_catalog_app:new' %}">New article</a> {% endif %}
+            {% if not perms.game_catalog_app.add_game %}
+            <a class="nav-link disabled" href="{% url 'game_catalog_app:new' %}">New game</a> {% else %}
+            <a class="nav-link" href="{% url 'game_catalog_app:new' %}">New game</a> {% endif %}
         </li>
     </ul>
 

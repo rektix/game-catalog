@@ -1,12 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Game(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
-    price = models.IntegerField(default=0)
-    rating = models.IntegerField(default=0)
+    price = models.IntegerField(default=1, validators=[
+            MinValueValidator(1)
+        ])
+    rating = models.IntegerField(default=1, validators=[
+            MaxValueValidator(10),
+            MinValueValidator(1)
+        ])
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

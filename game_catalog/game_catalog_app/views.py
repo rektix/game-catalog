@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from django.contrib.auth.decorators import login_required, permission_required
-from .models import Game
-from .forms import GameForm
+from .models import Game, Comment
+from .forms import GameForm, CommentForm
 
 
 def index(req):
@@ -19,8 +19,13 @@ def games(req):
 
 @login_required
 def game(req, id):
-    tmp = get_object_or_404(Game, id=id)
-    return render(req, 'game.html', {'game': tmp, 'page_title': tmp.title})
+    game = get_object_or_404(Game, id=id)
+    comments = []
+    try:
+        comments = get_list_or_404(Comment, game=game)
+    except Exception:
+        pass
+    return render(req, 'game.html', {'game': game, 'comments': comments, 'page_title': game.title})
 
 
 @permission_required('game_catalog_app.change_game')
