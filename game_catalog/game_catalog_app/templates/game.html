@@ -22,9 +22,27 @@
     </div>
     <div class="card-body">
         {% for comment in comments %}
-        <p>{{ comment }}</p>
+        <div class="card">
+            {{ comment.author }}: {{ comment.content }} {{ comment.created_at }}</p>
+        </div>
         {% endfor %}
     </div>
+    <form method="post" action="{% url 'game_catalog_app:comment' game.id %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <textarea class="form-control" id="{{ comment_form.content.id_for_label }}" name="{{ comment_form.content.name }}" rows="5"></textarea> {% if comment_form.content.errors %}
+            <div class="alert alert-danger">
+                <ul style="text-align: left">
+                    {% for error in comment_form.content.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+        <input type="submit" class="btn btn-primary btn-lg" value="Add comment" />
+    </form>
+
 </div>
 
 {% endblock %}

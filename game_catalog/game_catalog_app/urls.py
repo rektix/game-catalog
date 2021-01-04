@@ -8,5 +8,6 @@ urlpatterns = [
     path('games/', views.games, name='games'),
     path('games/<int:id>/', views.game, name='game'),
     path('game/edit/<int:id>/', views.edit, name='edit'),
-    path('game/new/', views.new, name='new')
+    path('game/new/', views.new, name='new'),
+    path('game/comment/<int:id>', views.comment, name='comment')
 ]

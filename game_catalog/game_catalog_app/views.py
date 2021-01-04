@@ -12,6 +12,19 @@ def index(req):
 
 
 @login_required
+def comment(req, id):
+    if req.method == 'POST':
+        form = CommentForm(req.POST)
+
+        if form.is_valid():
+            print('valid AF')
+            game = Game.objects.get(id=id)
+            a = Comment(content=form.cleaned_data['content'], author=req.user, game=game)
+            a.save()
+
+    return redirect('game_catalog_app:games')
+
+@login_required
 def games(req):
     tmp = Game.objects.all()
     return render(req, 'games.html', {'games': tmp})
@@ -21,11 +34,12 @@ def games(req):
 def game(req, id):
     game = get_object_or_404(Game, id=id)
     comments = []
+    comment_form = CommentForm()
     try:
         comments = get_list_or_404(Comment, game=game)
     except Exception:
         pass
-    return render(req, 'game.html', {'game': game, 'comments': comments, 'page_title': game.title})
+    return render(req, 'game.html', {'game': game, 'comments': comments, 'comment_form': comment_form, 'page_title': game.title})
 
 
 @permission_required('game_catalog_app.change_game')
